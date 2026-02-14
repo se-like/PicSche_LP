@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PicSche - スマートカレンダーアシスタント</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Baloo+2:wght@600;800&amp;family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#6B9EFF", 
+              secondary: "#FFB347", 
+              "background-light": "#F8FAFC",
+              "background-dark": "#0F172A",
+              "surface-light": "#FFFFFF",
+              "surface-dark": "#1E293B",
+              "text-light": "#1E293B",
+              "text-dark": "#F1F5F9",
+              "text-muted-light": "#64748B",
+              "text-muted-dark": "#94A3B8",
+            },
+            fontFamily: {
+              sans: ["Noto Sans JP", "Inter", "sans-serif"],
+              display: ["Baloo 2", "Noto Sans JP", "cursive"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              'xl': "1rem",
+              '2xl': "1.5rem",
+              '3xl': "2rem",
+            },
+            boxShadow: {
+                'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                'glow': '0 0 15px rgba(107, 158, 255, 0.3)',
+            }
+          },
+        },
+      };
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+<nav class="sticky top-0 z-50 backdrop-blur-md bg-surface-light/80 dark:bg-surface-dark/80 border-b border-gray-100 dark:border-gray-800">
+<div class="max-w-md mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-gradient-to-tr from-primary to-blue-400 rounded-xl flex items-center justify-center text-white font-display font-bold text-lg">P</div>
+<span class="font-display font-bold text-xl text-primary dark:text-white tracking-wide">PicSche</span>
+</div>
+<div class="hidden md:flex space-x-4 text-sm font-medium text-text-muted-light dark:text-text-muted-dark">
+<a class="hover:text-primary transition-colors" href="#">ホーム</a>
+<a class="hover:text-primary transition-colors" href="#">特徴</a>
+<a class="hover:text-primary transition-colors" href="#">料金</a>
+<a class="hover:text-primary transition-colors" href="#">よくある質問</a>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all active:scale-95">
+                アプリを入手
+            </button>
+</div>
+</nav>
+<main class="max-w-md mx-auto pb-20 overflow-hidden">
+<section class="px-6 py-10 text-center relative">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl -z-10"></div>
+<div class="flex justify-center mb-6 relative">
+<img alt="PicSche Cute Camera and Calendar Mascot Logo" class="w-40 h-40 object-contain drop-shadow-xl animate-float" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvSuf2x4_jaB-cMiSphmgfEp-GESQ3tW3gm5Bnfs4XWujsiNZcyW_PNXB99d5foiP07tPwFN3pi2XFAyBH6S-9S1iffICgdHxcVzmQI5JB87g7LNytXsmDwW45VPpvZPYbBhBr7bDwA4Uw3hmRmcOsHcg99S8VEa6pVSRjAl50mUH5mL1Mv3TzJIbXoATuyIKaMpowHzENQ7O1zPQ0mT7apb5c_mtdHa1Hawa_9C3tdHjsPWVBZJTo6HRi27ZfvAQ-W-hnx5SsqAvz"/>
+</div>
+<h1 class="font-display font-extrabold text-3xl mb-3 leading-tight text-gray-900 dark:text-white">
+                もう<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">学校行事</span>を<br/>見逃さない
+            </h1>
+<p class="text-text-muted-light dark:text-text-muted-dark text-base leading-relaxed mb-6 font-medium">
+                紙のお便りをAIで瞬時にデジタルカレンダーへ。<br/>面倒な入力作業から解放されます。
+            </p>
+</section>
+<section class="px-4 py-8">
+<div class="flex items-center justify-center space-x-2 mb-8 px-2">
+<span class="material-icons-round text-red-500 bg-red-100 dark:bg-red-900/30 p-1.5 rounded-lg">error_outline</span>
+<h2 class="font-bold text-xl text-gray-800 dark:text-gray-100">こんなお悩み、ありませんか？</h2>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700/50 flex items-start space-x-4 hover:translate-y-[-2px] transition-transform">
+<div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-xl flex-shrink-0">
+<span class="material-icons-round text-red-500 text-2xl">timer_off</span>
+</div>
+<div>
+<h3 class="font-bold text-lg mb-1 text-gray-900 dark:text-gray-100">手入力が面倒</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                            毎月のお便りを見ながら、一つ一つスマホに入力するのは時間がかかり、打ち間違いも起きがちです。
+                        </p>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700/50 flex items-start space-x-4 hover:translate-y-[-2px] transition-transform">
+<div class="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-xl flex-shrink-0">
+<span class="material-icons-round text-orange-500 text-2xl">sentiment_very_dissatisfied</span>
+</div>
+<div>
+<h3 class="font-bold text-lg mb-1 text-gray-900 dark:text-gray-100">また忘れちゃった！</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                            PTAの会合を忘れたり、プリントがリュックの奥底に埋もれて、お弁当の日を忘れてしまったり。
+                        </p>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700/50 flex items-start space-x-4 hover:translate-y-[-2px] transition-transform">
+<div class="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-xl flex-shrink-0">
+<span class="material-icons-round text-purple-500 text-2xl">share_off</span>
+</div>
+<div>
+<h3 class="font-bold text-lg mb-1 text-gray-900 dark:text-gray-100">共有が難しい</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                            パートナーや祖父母に予定を伝えるために、読みにくい写真を送っていませんか？
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<div class="flex items-center justify-center my-8">
+<div class="h-1 w-16 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+</div>
+<section class="px-4 py-4">
+<div class="text-center mb-10">
+<span class="inline-block py-1 px-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-primary text-xs font-bold tracking-wider mb-2 uppercase">ソリューション</span>
+<h2 class="font-display font-bold text-3xl text-gray-900 dark:text-white leading-tight">
+                    PicScheなら、<br/><span class="text-primary underline decoration-wavy decoration-secondary/50">すべて解決</span>
+</h2>
+</div>
+<div class="relative">
+<div class="absolute left-[27px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-primary via-secondary to-primary opacity-30 dark:opacity-20 z-0"></div>
+<div class="relative z-10 flex items-start space-x-6 mb-10 group">
+<div class="w-14 h-14 rounded-full bg-surface-light dark:bg-surface-dark border-4 border-white dark:border-background-dark shadow-md flex items-center justify-center flex-shrink-0">
+<span class="material-icons-round text-primary text-2xl group-hover:scale-110 transition-transform">photo_camera</span>
+</div>
+<div class="pt-2">
+<h4 class="font-bold text-xl text-gray-900 dark:text-white mb-1">1. 撮影</h4>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">学校のお便り、プリント、ホワイトボードをスマホで撮影するだけ。</p>
+<div class="mt-3 relative rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 w-24 h-32 rotate-3 hover:rotate-0 transition-transform duration-300 shadow-sm">
+<img alt="School schedule example" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXsxnTpdrlrDH5cO0vzFmd4ytcidmfjX0nU4-vYhy0ohk0MvCtewser6mHmGOe-ljXbaP8jTfYbZKwh8Asts2OIeBawY3lCfnXn--cXmYwgsWShl5Gfw1NXAkZIPr7DEjnhGxU7dHC69Cz8RWsUGcUSlTctfoZyl15N4gaQfPPSQGaMbUQy_WhpWin96jFs1MXN-4qOsHn2OWwla4fXuG16FmDvr9-Ja5RjC9OQSGOf1J1ssnInJZ0QkAfR3gNyqAEUGouE4U3VPqh"/>
+</div>
+</div>
+</div>
+<div class="relative z-10 flex items-start space-x-6 mb-10 group">
+<div class="w-14 h-14 rounded-full bg-surface-light dark:bg-surface-dark border-4 border-white dark:border-background-dark shadow-md flex items-center justify-center flex-shrink-0">
+<span class="material-icons-round text-secondary text-2xl group-hover:scale-110 transition-transform">smart_toy</span>
+</div>
+<div class="pt-2">
+<h4 class="font-bold text-xl text-gray-900 dark:text-white mb-1">2. AI解析</h4>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">高性能AIがテキストをスキャンし、日付、時間、イベントの詳細を即座に認識します。</p>
+</div>
+</div>
+<div class="relative z-10 flex items-start space-x-6 mb-10 group">
+<div class="w-14 h-14 rounded-full bg-surface-light dark:bg-surface-dark border-4 border-white dark:border-background-dark shadow-md flex items-center justify-center flex-shrink-0">
+<span class="material-icons-round text-green-500 text-2xl group-hover:scale-110 transition-transform">check_circle</span>
+</div>
+<div class="pt-2">
+<h4 class="font-bold text-xl text-gray-900 dark:text-white mb-1">3. 選択</h4>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">抽出されたイベントを確認。不要なものはチェックを外すだけ。</p>
+</div>
+</div>
+<div class="relative z-10 flex items-start space-x-6 group">
+<div class="w-14 h-14 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-lg shadow-blue-500/30 flex items-center justify-center flex-shrink-0">
+<span class="material-icons-round text-white text-2xl group-hover:scale-110 transition-transform">event_available</span>
+</div>
+<div class="pt-2">
+<h4 class="font-bold text-xl text-gray-900 dark:text-white mb-1">4. 登録</h4>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">ワンタップで端末のカレンダーに追加。同期完了！</p>
+</div>
+</div>
+</div>
+</section>
+<section class="px-4 mt-8 mb-4">
+<div class="bg-gradient-to-br from-primary via-blue-500 to-indigo-600 rounded-3xl p-8 text-white text-center shadow-lg shadow-blue-500/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-secondary/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
+<h3 class="text-lg font-bold opacity-90 mb-2">効率アップ</h3>
+<div class="flex items-baseline justify-center space-x-1 mb-2">
+<span class="font-display font-black text-6xl drop-shadow-md">180</span>
+<span class="text-3xl font-bold">倍の時短</span>
+</div>
+<p class="text-blue-100 font-medium text-sm mx-auto">手入力よりも圧倒的に速い。<br/>毎月最大2時間の節約に！</p>
+</div>
+</section>
+<section class="px-6 py-10 pb-24 text-center">
+<h2 class="font-display font-bold text-2xl mb-6 text-gray-900 dark:text-white">生活を整える準備はOK？</h2>
+<div class="space-y-4">
+<button class="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold py-4 rounded-xl shadow-xl flex items-center justify-center space-x-3 transform transition hover:scale-[1.02] active:scale-[0.98]">
+<svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.23-3.14-2.47-1.71-2.5-2.4-7.06.94-10.46 1.66-1.69 4.62-1.93 6.04-.15.86 1.09 1.63 1.07 2.65 1.07 1.02 0 2.21-.19 3.23-1.07 1.15-.99 1.61-2.53 1.64-2.6-.04-.01-3.16-1.21-3.19-4.81-.03-3 2.43-4.43 2.54-4.49-.07-.22-1.63-1.9-3.25-1.9-1.46.01-2.82.97-3.56.97-1.72 0-3.66-1.12-5.46-.94-4.22.42-7.06 4.34-7.06 8.5 0 6.64 4.14 11.23 8.32 11.23 1.96 0 2.76-1.31 4.29-1.31 1.54 0 2.18 1.31 4.19 1.31 2.2 0 3.73-2.01 5.1-4.42.59-1.04 1.28-2.61 1.28-2.61s-2.91-1.07-2.95-4.76c-.02-2.78 2.28-4.13 2.37-4.18z"></path></svg>
+<span>App Storeからダウンロード</span>
+</button>
+</div>
+<p class="mt-6 text-xs text-text-muted-light dark:text-text-muted-dark">
+                基本利用は無料。パワーユーザー向けプレミアムプランあり。
+            </p>
+</section>
+</main>
+<script>
+        // Simple float animation for hero image
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0px); }
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+</body></html>

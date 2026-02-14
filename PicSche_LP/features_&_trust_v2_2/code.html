@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>機能と信頼性 (日本語版)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FF9F45", // Warm orange/peach tone from the camera logo
+                        secondary: "#5C9EFF", // Soft blue from the camera logo
+                        "background-light": "#FFFDF8", // Very light warm cream
+                        "background-dark": "#1A202C", // Standard dark mode bg
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#2D3748",
+                        "text-light": "#4A5568",
+                        "text-dark": "#E2E8F0",
+                        "accent-blue": "#4299E1",
+                        "trust-blue": "#2C5282", // Dark blue for trust section
+                    },
+                    fontFamily: {
+                        display: ["'M PLUS Rounded 1c'", "sans-serif"],
+                        body: ["'Noto Sans JP'", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        'xl': '1.5rem',
+                        '2xl': '2rem',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 15px rgba(255, 159, 69, 0.3)',
+                    }
+                },
+            },
+        };
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+        }html {
+            scroll-behavior: smooth;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark antialiased transition-colors duration-300">
+<nav class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-700">
+<div class="max-w-md mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-icons-round text-primary text-2xl">photo_camera</span>
+<span class="font-bold text-xl text-gray-800 dark:text-white tracking-tight">PicSche</span>
+</div>
+<div class="hidden md:flex gap-4 text-sm font-medium text-gray-600 dark:text-gray-300">
+<a class="hover:text-primary transition-colors" href="#">ホーム</a>
+<a class="hover:text-primary transition-colors" href="#">特徴</a>
+<a class="hover:text-primary transition-colors" href="#">料金</a>
+<a class="hover:text-primary transition-colors" href="#">よくある質問</a>
+</div>
+<button class="md:hidden text-gray-500 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-icons-round">menu</span>
+</button>
+</div>
+</nav>
+<main class="max-w-md mx-auto overflow-hidden bg-white dark:bg-gray-900 shadow-2xl min-h-screen">
+<section class="px-6 py-12 space-y-16">
+<div class="text-center mb-10">
+<span class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-bold mb-3">PicScheの主な機能</span>
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white leading-tight">
+                    忙しいママ・パパの<br/>
+<span class="text-primary relative inline-block">
+                        味方になる機能
+                        <svg class="absolute -bottom-2 left-0 w-full h-2 text-primary/30" preserveAspectRatio="none" viewBox="0 0 100 10">
+<path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="3"></path>
+</svg>
+</span>
+</h2>
+</div>
+<div class="flex flex-col gap-6">
+<div class="relative bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-6 shadow-soft group hover:shadow-lg transition-shadow duration-300">
+<div class="absolute -right-4 -top-6 w-24 h-24 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-2xl opacity-60"></div>
+<div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white dark:bg-gray-600 text-accent-blue shadow-sm">
+<span class="material-icons-round text-3xl">auto_fix_high</span>
+</div>
+<h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">
+                        手書きもOK！<br/>高精度AI読み取り
+                    </h3>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        学校のプリントや手書きのメモも、写真を撮るだけでAIが瞬時に文字を認識。日付と内容を自動でカレンダーに登録します。
+                    </p>
+<div class="mt-6 relative h-40 rounded-xl overflow-hidden bg-white dark:bg-gray-800 border-2 border-dashed border-blue-200 dark:border-gray-600 flex items-center justify-center">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1584697964358-3e14ca57658b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80')] bg-cover bg-center opacity-40 grayscale"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent animate-pulse" style="height: 30%;"></div>
+<div class="relative z-10 bg-white dark:bg-gray-700 px-4 py-2 rounded-lg shadow-lg flex items-center gap-2">
+<span class="material-icons-round text-green-500">check_circle</span>
+<span class="text-xs font-bold text-gray-700 dark:text-gray-200">読み取り完了</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="relative bg-gradient-to-br from-orange-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-6 shadow-soft group hover:shadow-lg transition-shadow duration-300">
+<div class="absolute -left-4 -bottom-6 w-24 h-24 bg-orange-100 dark:bg-orange-900/30 rounded-full blur-2xl opacity-60"></div>
+<div class="flex flex-col items-end text-right">
+<div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white dark:bg-gray-600 text-primary shadow-sm">
+<span class="material-icons-round text-3xl">diversity_1</span>
+</div>
+<h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">
+                            家族みんなで<br/>スケジュール共有
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed ml-4">
+                            パパや子供たちとも予定をリアルタイムで共有。言った言わないのトラブルもこれで解決。
+                        </p>
+</div>
+<div class="mt-6 relative h-40 rounded-xl overflow-hidden bg-white dark:bg-gray-800 border-2 border-dashed border-orange-200 dark:border-gray-600 flex items-center justify-center">
+<div class="flex -space-x-3">
+<img alt="User 1" class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYkWEaujUjoZa_51KtJjZyQU4VWisSHxhR19l-uHaY7IauMFrhX33IXBrRDpm9Zd1FhIXU6mxbGlBabgxrv4ruFvmYTg6V118LezjaZK6akKVz5pgJV9BbXuZLBTMwl2up1r6LPEqwgxb1i1EoAq20rtPI6n51xF-X2Yv6nJ65K8fzI72l6XsdSZalh4b3AsDLIQwEieLWiXeAoiOYuclHKHwVOONrFhHCKL3AWt2i37nqUTMV2kNwg8ubQ_HjBNbTIPbV5m0CBau_"/>
+<img alt="User 2" class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb4VyMCfvrg_kos__u6Wxt-QtIe3P78VHdZjlQHDVWcVAkZfP42fn_-_Kgwiz7OzmUXLePdS4KhbOdsOoVovF091fA1U8DzOJYXsVnVZLvA1suklC_u9Y052YK3di4YduW1U2Pl0rOI0jXbqJoVEmIZRHd90tR7lBP94XVfpJDwlecTtcf4a-mP2wvESum1c2r_ykjE3bPJwT9I0pg5uyjUvag8DAjQzNmSEtyiTUca0fvnU0vxqbXv6szHOpHqmaDHKFPWpRCzn32"/>
+<img alt="User 3" class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWHl3cb7hGJVh-oKBQvBxl1psdmxqDGee8JqOd9Wx42RbyeDo75JhoRc_OaQ-cgBW7Mvi-0IeJayBxYXB4O1yq-Ejo94_W--lZp1UersF-nUn8NG1Xu5h0YmxTumPchNI0HZveMGAvuaZMf6RU8r34UvvJ43uvGFGiI4uuPJVN2Cf7X-K6wnHN8YT_XPgoTAFYGem_SWFsKCoj52aePmaWZJ8N8ET30Lx0AaXToqggvbd6yT4igXwiq7oLcrWb97Nl_Sp-Y0RwF9_Z"/>
+</div>
+<div class="absolute bottom-3 right-3 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            同期中
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 py-12 bg-gray-50 dark:bg-gray-800/50">
+<div class="text-center mb-10">
+<span class="material-icons-round text-yellow-400 text-4xl mb-2">star</span>
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white">ユーザーの声</h2>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-2">4.8/5.0 (App Store評価)</p>
+</div>
+<div class="space-y-4">
+<div class="bg-white dark:bg-gray-700 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-600">
+<div class="flex items-center gap-3 mb-3">
+<img alt="佐藤さん" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuJO-EGb5vvGACSwGHzgcevXevytAWOMWGpvC7wXDRZTqYrU_qBiLIEb2LN-pjJLc4pZt-p1wqGxdiZHm7jQX5UId6r7C9toa_MZUpy-KX3Qg1OxEbrXwI9czQ7YVPDXJLIAhbwGgSNc36RIZEaMxoplEgq96yZ4O31uu7raRfmuMjmdAVUIThPl2Q66bhN09kVbKbIG2kA81rRW9CYfq0O7HRSAkDYK0KKCnfsIT4fhN7N7UrauJNMeazMuTFWfXP3wg7kpcZJC5q"/>
+<div>
+<div class="text-sm font-bold text-gray-800 dark:text-white">佐藤さん (小2ママ)</div>
+<div class="flex text-yellow-400 text-xs">
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        「毎月の学級通信を手入力するのが苦痛でしたが、PicScheなら写真を撮るだけ。本当に助かっています！」
+                    </p>
+</div>
+<div class="bg-white dark:bg-gray-700 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-600">
+<div class="flex items-center gap-3 mb-3">
+<img alt="田中さん" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCinXjCUTZkNkLVO4m_fGXYyLohBahXTD7eJ-aV1mUBqP44RmjMVsskPB3FzOeOyiqSzZX6TbfSWzwcwWvmNcVzfgjufCpSxl5ZJxK9o_UhMNqoWcoiDZRrNQVjGHC51Q2pBAKKaD1EC2mYrJHeIDp32DfuCeTzg7rwyDQ8QAm00hrm_-nCwSyuIeIbe9Sbqt_QOtX3TwZgVzO7cmRwCucIJbTFvza-vOEgLUnFRdjG40zaPEUsvim5TIPFC34gWHPY5cyFdneypJXI"/>
+<div>
+<div class="text-sm font-bold text-gray-800 dark:text-white">田中さん (中1パパ)</div>
+<div class="flex text-yellow-400 text-xs">
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        「部活の予定表が手書きで読みにくかったのですが、AIがしっかり認識してくれて驚きました。」
+                    </p>
+</div>
+<div class="bg-white dark:bg-gray-700 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-600">
+<div class="flex items-center gap-3 mb-3">
+<img alt="鈴木さん" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkBzYe9DhSsWrss8K58F8bfH4axIs7U_3leI4NyPKmfkbMCg-noG2GjoFl8s8PdzgCn0-ugUEJqvFCkkFv9mNcOdsrXJH4MmKdn4ARsR_1nQCqOZjj81ckh66hHGXeVWw4DzwGqlYqR1AYDZmaz6-68insx3A9zzM1spVD7LiEoMUL5sPYk9CgFx7UJa1DAu6JWor0RCVurwDisMQ95ag0cUA8DBLZqAMrTYt7RI-7OQG1wul7kP9NcT4X7eANsc1CGALbpv9rt60i"/>
+<div>
+<div class="text-sm font-bold text-gray-800 dark:text-white">鈴木さん (3児の母)</div>
+<div class="flex text-yellow-400 text-xs">
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star</span>
+<span class="material-icons-round text-sm">star_half</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        「兄弟それぞれの予定が色分けできるので、カレンダーが見やすくなりました。共有機能も便利です。」
+                    </p>
+</div>
+</div>
+<div class="mt-8 text-center">
+<a class="inline-flex items-center text-primary font-bold hover:underline" href="#">
+                    もっとレビューを見る
+                    <span class="material-icons-round ml-1 text-lg">arrow_forward</span>
+</a>
+</div>
+</section>
+<section class="relative bg-trust-blue py-16 px-6 overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+<div class="absolute top-10 left-10 w-32 h-32 rounded-full border-4 border-white"></div>
+<div class="absolute bottom-10 right-10 w-20 h-20 rounded-full border-2 border-white"></div>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-white/50"></div>
+</div>
+<div class="relative z-10 text-center">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm mb-6 border border-white/20">
+<span class="material-icons-round text-white text-3xl">verified_user</span>
+</div>
+<h2 class="text-2xl font-bold text-white mb-8 tracking-wide">
+                    安心・安全への取り組み
+                </h2>
+<div class="grid grid-cols-1 gap-6 text-left">
+<div class="flex items-start gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+<span class="material-icons-round text-green-400 mt-1">lock</span>
+<div>
+<h3 class="font-bold text-white mb-1">セキュア通信</h3>
+<p class="text-xs text-blue-100 leading-relaxed">全てのデータ通信はSSL/TLSで暗号化され、第三者による盗聴を防ぎます。</p>
+</div>
+</div>
+<div class="flex items-start gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+<span class="material-icons-round text-green-400 mt-1">delete_forever</span>
+<div>
+<h3 class="font-bold text-white mb-1">プライバシー第一</h3>
+<p class="text-xs text-blue-100 leading-relaxed">退会時やリクエストに応じて、サーバー上の個人情報は完全に削除されます。</p>
+</div>
+</div>
+<div class="flex items-start gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+<span class="material-icons-round text-green-400 mt-1">public</span>
+<div>
+<h3 class="font-bold text-white mb-1">日本製</h3>
+<p class="text-xs text-blue-100 leading-relaxed">日本の法規制に準拠し、国内サーバーでデータを厳重に管理しています。</p>
+</div>
+</div>
+</div>
+<div class="mt-10">
+<button class="bg-white text-trust-blue hover:bg-gray-100 transition-colors w-full py-4 rounded-full font-bold shadow-lg text-lg flex items-center justify-center gap-2">
+                        今すぐ無料で始める
+                        <span class="material-icons-round">download</span>
+</button>
+<p class="text-blue-200/60 text-xs mt-4">
+                        ※ 基本機能は永年無料でご利用いただけます。
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Simple dark mode toggle for demonstration (optional)
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+
+</body></html>
