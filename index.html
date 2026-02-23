@@ -263,19 +263,29 @@
           <div class="grid lg:grid-cols-2 gap-8 items-center">
             <div class="bg-white rounded-2xl p-6 shadow-sm order-2 lg:order-1">
               <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-primary text-xs font-bold mb-3"><span class="lang-ja">高精度認識</span><span class="lang-en">High accuracy</span></span>
-              <h3 class="text-xl font-bold text-gray-900 mb-3"><span class="lang-ja">手書きも表形式も認識</span><span class="lang-en">Handwriting & tables supported</span></h3>
+              <h3 class="text-xl font-bold text-gray-900 mb-3"><span class="lang-ja">手書きも認識</span><span class="lang-en">Reads handwriting too</span></h3>
               <p class="text-gray-600 text-sm">
-                <span class="lang-ja">AIが手書き文字、表形式、月間カレンダーを読み取ります。1枚から多数の予定を抽出可能。画像に補足を添えると精度が上がります。</span>
-                <span class="lang-en">AI reads handwriting, tables, and monthly calendars. Extract many events from one image. Add a note to improve accuracy.</span>
+                <span class="lang-ja">AIが手書き文字、表形式、月間カレンダー、様々な予定形式を読み取ります。1枚から多数の予定を抽出可能です。</span>
+                <span class="lang-en">AI reads handwriting, tables, monthly calendars, and various schedule formats. You can extract many events from a single image.</span>
               </p>
             </div>
-            <div class="rounded-2xl bg-gray-100 h-64 flex items-center justify-center order-1 lg:order-2">
-              <span class="material-icons-round text-6xl text-primary">auto_fix_high</span>
+            <div class="order-1 lg:order-2 flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <span class="hover-zoom block w-full max-w-[200px] flex-shrink-0">
+                <img src="assets/feature-handwriting.png" alt="" class="w-full h-auto object-contain rounded-2xl shadow-lg border border-gray-200" style="max-height: 420px;"/>
+              </span>
+              <span class="hover-zoom block w-full max-w-[200px] flex-shrink-0">
+                <img src="assets/feature-handwriting-result.png" alt="" class="w-full h-auto object-contain rounded-2xl shadow-lg border border-gray-200" style="max-height: 420px;"/>
+              </span>
             </div>
           </div>
           <div class="grid lg:grid-cols-2 gap-8 items-center">
-            <div class="rounded-2xl bg-gray-100 h-64 flex items-center justify-center">
-              <span class="material-icons-round text-6xl text-primary">event</span>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <span class="hover-zoom block w-full max-w-[200px] flex-shrink-0">
+                <img src="assets/feature-calendar-select.png" alt="" class="w-full h-auto object-contain rounded-2xl shadow-lg border border-gray-200" style="max-height: 420px;"/>
+              </span>
+              <span class="hover-zoom block w-full max-w-[200px] flex-shrink-0">
+                <img src="assets/feature-calendar-month.png" alt="" class="w-full h-auto object-contain rounded-2xl shadow-lg border border-gray-200" style="max-height: 420px;"/>
+              </span>
             </div>
             <div class="bg-white rounded-2xl p-6 shadow-sm">
               <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-primary text-xs font-bold mb-3"><span class="lang-ja">iOS &amp; Android対応</span><span class="lang-en">iOS &amp; Android</span></span>
@@ -288,14 +298,19 @@
           </div>
           <div class="grid lg:grid-cols-2 gap-8 items-center">
             <div class="bg-white rounded-2xl p-6 shadow-sm order-2 lg:order-1">
-              <h3 class="text-xl font-bold text-gray-900 mb-3"><span class="lang-ja">「2月の学校だより」とヒントを添えるだけ</span><span class="lang-en">Add a hint for better accuracy</span></h3>
+              <h3 class="text-xl font-bold text-gray-900 mb-3"><span class="lang-ja">AIに注文をつけたい時も、カスタマイズ欄に書くだけ</span><span class="lang-en">Give the AI instructions in the customize field</span></h3>
               <p class="text-gray-600 text-sm">
-                <span class="lang-ja">画像の説明を簡単に添えることで、AIの抽出精度がさらに向上。複雑なレイアウトや手書きが多い場合も安心です。</span>
-                <span class="lang-en">A short note like “February school newsletter” helps the AI extract events more accurately.</span>
+                <span class="lang-ja">AIに注文をつけたいなんて時にも、「運動会関連の予定だけ」と記載すれば、AIがあなたの依頼に答えて、抽出結果をカスタマイズします。</span>
+                <span class="lang-en">When you want to give the AI instructions, type e.g. “Only sports day events” and the AI will customize the extraction results.</span>
               </p>
             </div>
-            <div class="rounded-2xl bg-gray-100 h-64 flex items-center justify-center order-1 lg:order-2">
-              <span class="material-icons-round text-6xl text-primary">comment</span>
+            <div class="order-1 lg:order-2 flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <span class="hover-zoom block w-full max-w-[200px] flex-shrink-0">
+                <img src="assets/feature-customize-input.png" alt="" class="w-full h-auto object-contain rounded-2xl shadow-lg border border-gray-200" style="min-height: 320px;"/>
+              </span>
+              <span class="hover-zoom block w-full max-w-[200px] flex-shrink-0">
+                <img src="assets/feature-customize-result.png" alt="" class="w-full h-auto object-contain rounded-2xl shadow-lg border border-gray-200" style="min-height: 320px;"/>
+              </span>
             </div>
           </div>
         </div>
