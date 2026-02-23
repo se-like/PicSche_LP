@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PicSche（ピクスケ）- 学校のお便りを撮るだけでカレンダーに自動登録 | iOS &amp; Android対応</title>
-  <meta name="description" content="学校のお便り、月間カレンダーを撮影するだけでAIが予定を自動抽出。iOSカレンダーに一括登録できる時短アプリ。無料で今すぐ試せます。iOS版・Android版対応。"/>
+  <meta name="description" content="学校のお便り、月間カレンダーを撮影するだけでAIが予定を自動抽出。iOS・Androidのカレンダーに一括登録できる時短アプリ。初回2回無料・チャージのみ。iOS版・Android版対応。"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script>
     tailwind.config = {
@@ -32,6 +32,53 @@
     details summary::-webkit-details-marker { display: none; }
     details[open] summary ~ * { animation: sweep .3s ease-out; }
     @keyframes sweep { from { opacity: 0; } to { opacity: 1; } }
+    /* ストアバッジ: 同じ枠サイズ。Google PlayはPNG内余白が多いため拡大して見た目を揃える */
+    .store-badge-wrap {
+      width: 135px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .store-badge-wrap img {
+      width: 135px;
+      height: 44px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    /* Google Play PNGは余白が多いため拡大し、枠でクロップしてApp Storeと同サイズに見せる */
+    .store-badge-wrap--google img {
+      transform: scale(1.35);
+    }
+    /* クリックでライトボックス拡大。ホバーは軽く拡大してクリック可能を示す */
+    .hover-zoom {
+      position: relative;
+      display: inline-block;
+      overflow: visible;
+      cursor: pointer;
+    }
+    .hover-zoom img {
+      transition: transform 0.2s ease;
+      transform-origin: center center;
+    }
+    .hover-zoom:hover img {
+      transform: scale(1.08);
+    }
+    .hover-zoom:hover {
+      z-index: 30;
+    }
+    /* ライトボックスオーバーレイ */
+    #lightbox {
+      backdrop-filter: blur(4px);
+    }
+    #lightbox img {
+      max-width: min(90vw, 800px);
+      max-height: 85vh;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased min-h-screen">
@@ -99,21 +146,17 @@
               <span class="lang-ja">学校のプリント、習い事のスケジュール、ゴミ出しカレンダー。AIが写真から予定を読み取り、カレンダーに一括登録。月間カレンダーなら20件以上を一度に処理。</span>
               <span class="lang-en">School flyers, lesson schedules, recycling calendars. AI reads your photos and adds events to your calendar in one go. Handle 20+ events from a single monthly calendar.</span>
             </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gray-900 text-white font-bold shadow-lg hover:opacity-90 transition">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.23-3.14-2.47-1.71-2.5-2.4-7.06.94-10.46 1.66-1.69 4.62-1.93 6.04-.15.86 1.09 1.63 1.07 2.65 1.07 1.02 0 2.21-.19 3.23-1.07 1.15-.99 1.61-2.53 1.64-2.6-.04-.01-3.16-1.21-3.19-4.81-.03-3 2.43-4.43 2.54-4.49-.07-.22-1.63-1.9-3.25-1.9-1.46.01-2.82.97-3.56.97-1.72 0-3.66-1.12-5.46-.94-4.22.42-7.06 4.34-7.06 8.5 0 6.64 4.14 11.23 8.32 11.23 1.96 0 2.76-1.31 4.29-1.31 1.54 0 2.18 1.31 4.19 1.31 2.2 0 3.73-2.01 5.1-4.42.59-1.04 1.28-2.61 1.28-2.61s-2.91-1.07-2.95-4.76c-.02-2.78 2.28-4.13 2.37-4.18z"/></svg>
-                <span class="lang-ja">App Storeからダウンロード</span>
-                <span class="lang-en">Download on App Store</span>
+            <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-stretch">
+              <a href="#" class="inline-flex items-center justify-center rounded-xl bg-gray-900 text-white font-bold shadow-lg hover:opacity-90 transition p-2 shrink-0 h-14 min-w-[150px]">
+                <span class="store-badge-wrap"><img src="assets/app-store-badge.svg" alt="Download on the App Store"/></span>
               </a>
-              <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-white font-bold shadow-lg hover:bg-primary-dark transition">
-                <svg class="w-6 h-6" viewBox="0 0 24 24"><path fill="currentColor" d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L16.19,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                <span class="lang-ja">Google Playで手に入れよう</span>
-                <span class="lang-en">Get it on Google Play</span>
+              <a href="#" class="inline-flex items-center justify-center rounded-xl bg-primary text-white font-bold shadow-lg hover:bg-primary-dark transition p-2 shrink-0 h-14 min-w-[150px]">
+                <span class="store-badge-wrap store-badge-wrap--google"><img src="assets/google-play-badge.png" alt="Get it on Google Play"/></span>
               </a>
             </div>
             <p class="mt-4 text-sm text-gray-500">
-              <span class="lang-ja">無料で今すぐ試せる（初回1回のみ・広告なし）</span>
-              <span class="lang-en">Free to try (1 free use, then charge or plan · No ads)</span>
+              <span class="lang-ja">無料で今すぐ試せる（初回2回まで無料・広告なし）</span>
+              <span class="lang-en">Free to try (2 free uses, then charge · No ads)</span>
             </p>
           </div>
           <div class="relative flex justify-center">
@@ -133,8 +176,8 @@
           <span class="lang-en">Does this sound familiar?</span>
         </h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-white rounded-2xl p-6 shadow-sm">
-            <div class="text-4xl mb-4">⏰</div>
+          <div class="bg-white rounded-2xl p-6 shadow-sm overflow-hidden hover:overflow-visible hover:z-10 relative">
+            <span class="hover-zoom block rounded-xl overflow-visible"><img src="assets/problem-typing.png" alt="" class="w-full h-40 object-cover rounded-xl mb-4"/></span>
             <h3 class="font-bold text-lg text-gray-900 mb-2">
               <span class="lang-ja">手入力に10分以上</span>
               <span class="lang-en">10+ minutes of typing</span>
@@ -144,8 +187,8 @@
               <span class="lang-en">One school flyer takes 10–15 minutes to type. Again and again every month.</span>
             </p>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm">
-            <div class="text-4xl mb-4">😰</div>
+          <div class="bg-white rounded-2xl p-6 shadow-sm overflow-hidden hover:overflow-visible hover:z-10 relative">
+            <span class="hover-zoom block rounded-xl overflow-visible"><img src="assets/problem-forget.png" alt="" class="w-full h-40 object-cover rounded-xl mb-4"/></span>
             <h3 class="font-bold text-lg text-gray-900 mb-2">
               <span class="lang-ja">持ち物を忘れてしまう</span>
               <span class="lang-en">Forgotten items</span>
@@ -155,8 +198,8 @@
               <span class="lang-en">You forgot to add it to the calendar, and the kids ask why you didn’t prepare.</span>
             </p>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm">
-            <div class="text-4xl mb-4">📱</div>
+          <div class="bg-white rounded-2xl p-6 shadow-sm overflow-hidden hover:overflow-visible hover:z-10 relative">
+            <span class="hover-zoom block rounded-xl overflow-visible"><img src="assets/problem-share.png" alt="" class="w-full h-40 object-cover rounded-xl mb-4"/></span>
             <h3 class="font-bold text-lg text-gray-900 mb-2">
               <span class="lang-ja">家族で共有できない</span>
               <span class="lang-en">Hard to share with family</span>
@@ -177,27 +220,27 @@
           <span class="lang-ja">PicScheなら、すべて解決</span>
           <span class="lang-en">PicSche solves it all</span>
         </h2>
-        <div class="flex flex-wrap justify-center gap-8 mt-12 mb-12">
-          <div class="flex flex-col items-center text-center max-w-[140px]">
-            <span class="text-4xl mb-2">📷</span>
+        <div class="flex flex-wrap justify-center gap-8 mt-12 mb-12 items-end">
+          <div class="flex flex-col items-center text-center max-w-[160px]">
+            <span class="hover-zoom block"><img src="assets/app-step-capture.png" alt="" class="lightbox-step-img w-28 rounded-2xl shadow-lg border border-gray-200 mb-3 object-cover object-top" style="aspect-ratio: 9/19.5;"/></span>
             <span class="font-bold text-gray-900"><span class="lang-ja">撮影</span><span class="lang-en">Capture</span></span>
             <span class="text-sm text-gray-600"><span class="lang-ja">お便りを写真に</span><span class="lang-en">Snap the flyer</span></span>
           </div>
           <span class="self-center text-gray-400">→</span>
-          <div class="flex flex-col items-center text-center max-w-[140px]">
-            <span class="text-4xl mb-2">🤖</span>
+          <div class="flex flex-col items-center text-center max-w-[160px]">
+            <span class="hover-zoom block"><img src="assets/app-step-ai.png" alt="" class="lightbox-step-img w-28 rounded-2xl shadow-lg border border-gray-200 mb-3 object-cover object-top" style="aspect-ratio: 9/19.5;"/></span>
             <span class="font-bold text-gray-900"><span class="lang-ja">AI解析</span><span class="lang-en">AI reads</span></span>
             <span class="text-sm text-gray-600"><span class="lang-ja">予定を自動抽出</span><span class="lang-en">Extracts events</span></span>
           </div>
           <span class="self-center text-gray-400">→</span>
-          <div class="flex flex-col items-center text-center max-w-[140px]">
-            <span class="text-4xl mb-2">✅</span>
+          <div class="flex flex-col items-center text-center max-w-[160px]">
+            <span class="hover-zoom block"><img src="assets/app-step-select.png" alt="" class="lightbox-step-img w-28 rounded-2xl shadow-lg border border-gray-200 mb-3 object-cover object-top" style="aspect-ratio: 9/19.5;"/></span>
             <span class="font-bold text-gray-900"><span class="lang-ja">選択</span><span class="lang-en">Select</span></span>
             <span class="text-sm text-gray-600"><span class="lang-ja">必要なだけチェック</span><span class="lang-en">Pick what you need</span></span>
           </div>
           <span class="self-center text-gray-400">→</span>
-          <div class="flex flex-col items-center text-center max-w-[140px]">
-            <span class="text-4xl mb-2">📅</span>
+          <div class="flex flex-col items-center text-center max-w-[160px]">
+            <span class="hover-zoom block"><img src="assets/app-step-register.png" alt="" class="lightbox-step-img w-28 rounded-2xl shadow-lg border border-gray-200 mb-3 object-cover object-top" style="aspect-ratio: 9/19.5;"/></span>
             <span class="font-bold text-gray-900"><span class="lang-ja">登録</span><span class="lang-en">Register</span></span>
             <span class="text-sm text-gray-600"><span class="lang-ja">カレンダーに一括登録</span><span class="lang-en">Add to calendar</span></span>
           </div>
@@ -219,11 +262,11 @@
         <div class="space-y-16">
           <div class="grid lg:grid-cols-2 gap-8 items-center">
             <div class="bg-white rounded-2xl p-6 shadow-sm order-2 lg:order-1">
-              <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-primary text-xs font-bold mb-3"><span class="lang-ja">精度95%以上</span><span class="lang-en">95%+ accuracy</span></span>
-              <h3 class="text-xl font-bold text-gray-900 mb-3"><span class="lang-ja">手書きも表形式も高精度に認識</span><span class="lang-en">Handwriting & tables, high accuracy</span></h3>
+              <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-primary text-xs font-bold mb-3"><span class="lang-ja">高精度認識</span><span class="lang-en">High accuracy</span></span>
+              <h3 class="text-xl font-bold text-gray-900 mb-3"><span class="lang-ja">手書きも表形式も認識</span><span class="lang-en">Handwriting & tables supported</span></h3>
               <p class="text-gray-600 text-sm">
-                <span class="lang-ja">学校プリント特化型のAI。手書き文字、複雑な表形式、月間カレンダーも正確に読み取ります。1枚から20件以上の予定を抽出可能。</span>
-                <span class="lang-en">AI trained on school handouts. Handwriting, complex tables, and monthly calendars. Extract 20+ events from a single image.</span>
+                <span class="lang-ja">AIが手書き文字、表形式、月間カレンダーを読み取ります。1枚から多数の予定を抽出可能。画像に補足を添えると精度が上がります。</span>
+                <span class="lang-en">AI reads handwriting, tables, and monthly calendars. Extract many events from one image. Add a note to improve accuracy.</span>
               </p>
             </div>
             <div class="rounded-2xl bg-gray-100 h-64 flex items-center justify-center order-1 lg:order-2">
@@ -238,8 +281,8 @@
               <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-primary text-xs font-bold mb-3"><span class="lang-ja">iOS &amp; Android対応</span><span class="lang-en">iOS &amp; Android</span></span>
               <h3 class="text-xl font-bold text-gray-900 mb-3"><span class="lang-ja">共有カレンダーに直接登録</span><span class="lang-en">Direct to your calendar</span></h3>
               <p class="text-gray-600 text-sm">
-                <span class="lang-ja">TimeTreeなど専用アプリ不要。iOSの標準カレンダー／Googleカレンダーに登録し、家族全員と予定を共有できます。</span>
-                <span class="lang-en">No extra app. Add to iOS Calendar or Google Calendar and share with the whole family.</span>
+                <span class="lang-ja">iOSの標準カレンダー／Googleカレンダーに登録し、家族全員と予定を共有できます。</span>
+                <span class="lang-en">Add to iOS Calendar or Google Calendar and share with the whole family.</span>
               </p>
             </div>
           </div>
@@ -313,15 +356,15 @@
           <span class="lang-en">Pricing</span>
         </h2>
         <p class="text-center text-gray-600 text-sm mb-12 max-w-2xl mx-auto">
-          <span class="lang-ja">無料で試して、足りなければ都度チャージも月額も選べます</span>
-          <span class="lang-en">Try free, then add uses as you need—by charge or monthly plan.</span>
+          <span class="lang-ja">無料で試して、足りなければ都度必要な分だけチャージできます</span>
+          <span class="lang-en">Try free, then charge as you need. No monthly fees.</span>
         </p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-5xl mx-auto">
           <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 flex flex-col">
             <p class="text-sm font-bold text-gray-500 mb-2"><span class="lang-ja">まずはお試し</span><span class="lang-en">Try free</span></p>
             <h3 class="text-xl font-bold text-gray-900 mb-1"><span class="lang-ja">無料</span><span class="lang-en">Free</span></h3>
             <p class="text-3xl font-black text-gray-900 mb-4"><span class="lang-ja">¥0</span><span class="lang-en">Free</span></p>
-            <p class="text-sm text-gray-600 mb-4"><span class="lang-ja">月1回まで</span><span class="lang-en">1 use per month</span></p>
+            <p class="text-sm text-gray-600 mb-4"><span class="lang-ja">初回2回まで</span><span class="lang-en">2 uses total</span></p>
             <ul class="space-y-2 text-sm text-gray-600 flex-1 mb-6">
               <li class="flex items-center gap-2"><span class="material-icons-round text-green-500 text-lg">check_circle</span> <span class="lang-ja">全機能・広告なし</span><span class="lang-en">All features, no ads</span></li>
               <li class="flex items-center gap-2"><span class="material-icons-round text-green-500 text-lg">check_circle</span> <span class="lang-ja">カレンダー同期</span><span class="lang-en">Calendar sync</span></li>
@@ -343,29 +386,18 @@
           </div>
           <div class="bg-white rounded-2xl p-6 shadow-xl border-2 border-primary flex flex-col relative scale-105 z-10">
             <span class="absolute -top-3 right-4 px-3 py-1 rounded-full bg-primary text-white text-xs font-bold"><span class="lang-ja">人気</span><span class="lang-en">Popular</span></span>
-            <p class="text-sm font-bold text-primary mb-2"><span class="lang-ja">忙しい保護者に</span><span class="lang-en">For busy parents</span></p>
-            <h3 class="text-xl font-bold text-gray-900 mb-1"><span class="lang-ja">ベーシック</span><span class="lang-en">Basic</span></h3>
-            <p class="text-3xl font-black text-gray-900 mb-4"><span class="lang-ja">¥150<span class="text-base font-normal text-gray-500">/月</span></span><span class="lang-en">¥150<span class="text-base font-normal text-gray-500">/mo</span></span></p>
-            <p class="text-sm text-gray-600 mb-4"><span class="lang-ja">月10回まで</span><span class="lang-en">Up to 10x/month</span></p>
+            <p class="text-sm font-bold text-primary mb-2"><span class="lang-ja">まとめてお得に</span><span class="lang-en">Save more</span></p>
+            <h3 class="text-xl font-bold text-gray-900 mb-1"><span class="lang-ja">5回チャージ</span><span class="lang-en">5 Uses Charge</span></h3>
+            <p class="text-3xl font-black text-gray-900 mb-4"><span class="lang-ja">¥150</span><span class="lang-en">¥150</span></p>
+            <p class="text-sm text-gray-600 mb-4"><span class="lang-ja">1回あたり¥30</span><span class="lang-en">¥30 per use</span></p>
             <ul class="space-y-2 text-sm text-gray-600 flex-1 mb-6">
-              <li class="flex items-center gap-2"><span class="material-icons-round text-primary text-lg">check_circle</span> <span class="lang-ja">全機能・広告なし</span><span class="lang-en">All features, no ads</span></li>
-              <li class="flex items-center gap-2"><span class="material-icons-round text-primary text-lg">check_circle</span> <span class="lang-ja">優先サポート</span><span class="lang-en">Priority support</span></li>
+              <li class="flex items-center gap-2"><span class="material-icons-round text-primary text-lg">check_circle</span> <span class="lang-ja">5回分が追加（期限なし）</span><span class="lang-en">+5 uses, no expiry</span></li>
+              <li class="flex items-center gap-2"><span class="material-icons-round text-primary text-lg">check_circle</span> <span class="lang-ja">サブスク不要・いつでも利用可能</span><span class="lang-en">No subscription, use anytime</span></li>
             </ul>
-            <a href="#cta" class="block w-full py-3 rounded-xl bg-primary text-white font-bold text-center hover:bg-primary-dark transition"><span class="lang-ja">ベーシックを選択</span><span class="lang-en">Choose Basic</span></a>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 flex flex-col">
-            <p class="text-sm font-bold text-amber-600 mb-2"><span class="lang-ja">ヘビーユーザー向け</span><span class="lang-en">Power users</span></p>
-            <h3 class="text-xl font-bold text-gray-900 mb-1"><span class="lang-ja">プレミアム</span><span class="lang-en">Premium</span></h3>
-            <p class="text-3xl font-black text-gray-900 mb-4"><span class="lang-ja">¥300<span class="text-base font-normal text-gray-500">/月</span></span><span class="lang-en">¥300<span class="text-base font-normal text-gray-500">/mo</span></span></p>
-            <p class="text-sm text-gray-600 mb-4"><span class="lang-ja">月20回まで</span><span class="lang-en">Up to 20x/month</span></p>
-            <ul class="space-y-2 text-sm text-gray-600 flex-1 mb-6">
-              <li class="flex items-center gap-2"><span class="material-icons-round text-amber-500 text-lg">check_circle</span> <span class="lang-ja">ベーシックの全機能</span><span class="lang-en">Everything in Basic</span></li>
-              <li class="flex items-center gap-2"><span class="material-icons-round text-amber-500 text-lg">check_circle</span> <span class="lang-ja">大容量プラン</span><span class="lang-en">More scans</span></li>
-            </ul>
-            <a href="#cta" class="block w-full py-3 rounded-xl bg-amber-500 text-white font-bold text-center hover:bg-amber-600 transition"><span class="lang-ja">プレミアムを選択</span><span class="lang-en">Choose Premium</span></a>
+            <a href="#cta" class="block w-full py-3 rounded-xl bg-primary text-white font-bold text-center hover:bg-primary-dark transition"><span class="lang-ja">チャージする</span><span class="lang-en">Add 5 uses</span></a>
           </div>
         </div>
-        <p class="text-center text-sm text-gray-500 mt-6"><span class="lang-ja">※いつでもキャンセル可能｜無料→チャージ→月額のどれからでも始められます</span><span class="lang-en">Cancel anytime. Start with free, charge, or a monthly plan.</span></p>
+        <p class="text-center text-sm text-gray-500 mt-6"><span class="lang-ja">※初回2回無料のあと、必要な分だけチャージしてご利用いただけます。</span><span class="lang-en">2 free uses, then charge as you need.</span></p>
       </div>
     </section>
 
@@ -395,8 +427,8 @@
               <span class="material-icons-round text-gray-400">expand_more</span>
             </summary>
             <div class="px-4 pb-4 text-gray-600 text-sm">
-              <span class="lang-ja">基本機能は同じです。iOS版は標準カレンダーに、Android版はGoogleカレンダーに直接登録できます。どちらも家族との共有に対応しています。</span>
-              <span class="lang-en">Core features are the same. iOS adds to the system calendar; Android to Google Calendar. Both support family sharing.</span>
+              <span class="lang-ja">基本機能は同じです。iOS版は標準カレンダーに、Android版は端末のカレンダー（Googleカレンダー等）に直接登録できます。料金も同じで、どちらも初回2回無料のあとチャージ制です。</span>
+              <span class="lang-en">Core features are the same. iOS uses the system calendar; Android uses device calendar (e.g. Google Calendar). Both offer 2 free uses, then charge-only.</span>
             </div>
           </details>
           <details class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
@@ -421,6 +453,17 @@
               <span class="lang-en">Images are deleted right after extraction and are not stored. We don’t extract names or addresses.</span>
             </div>
           </details>
+          <details class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="p-4 font-bold cursor-pointer flex justify-between items-center">
+              <span class="lang-ja">月額課金（サブスクリプション）ですか？</span>
+              <span class="lang-en">Is there a monthly subscription?</span>
+              <span class="material-icons-round text-gray-400">expand_more</span>
+            </summary>
+            <div class="px-4 pb-4 text-gray-600 text-sm">
+              <span class="lang-ja">いいえ。iOS・Androidとも月額課金はありません。初回2回まで無料で、その後は必要な分だけチャージしてご利用いただけます。</span>
+              <span class="lang-en">No. Both iOS and Android have no subscription. 2 free uses, then charge as you need.</span>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -436,19 +479,15 @@
           <span class="lang-ja">学校のお便り入力から解放される生活、今日から始めませんか？</span>
           <span class="lang-en">Start freeing yourself from typing school flyers today.</span>
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-          <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gray-900 text-white font-bold shadow-lg hover:opacity-90 transition min-h-[60px]">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.23-3.14-2.47-1.71-2.5-2.4-7.06.94-10.46 1.66-1.69 4.62-1.93 6.04-.15.86 1.09 1.63 1.07 2.65 1.07 1.02 0 2.21-.19 3.23-1.07 1.15-.99 1.61-2.53 1.64-2.6-.04-.01-3.16-1.21-3.19-4.81-.03-3 2.43-4.43 2.54-4.49-.07-.22-1.63-1.9-3.25-1.9-1.46.01-2.82.97-3.56.97-1.72 0-3.66-1.12-5.46-.94-4.22.42-7.06 4.34-7.06 8.5 0 6.64 4.14 11.23 8.32 11.23 1.96 0 2.76-1.31 4.29-1.31 1.54 0 2.18 1.31 4.19 1.31 2.2 0 3.73-2.01 5.1-4.42.59-1.04 1.28-2.61 1.28-2.61s-2.91-1.07-2.95-4.76c-.02-2.78 2.28-4.13 2.37-4.18z"/></svg>
-            <span class="lang-ja">App Storeからダウンロード</span>
-            <span class="lang-en">Download on App Store</span>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6 items-center">
+          <a href="#" class="inline-flex items-center justify-center rounded-xl bg-gray-900 text-white font-bold shadow-lg hover:opacity-90 transition p-2 shrink-0">
+            <span class="store-badge-wrap"><img src="assets/app-store-badge.svg" alt="Download on the App Store"/></span>
           </a>
-          <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-primary font-bold shadow-lg hover:bg-gray-100 transition min-h-[60px]">
-            <svg class="w-7 h-7" viewBox="0 0 24 24"><path fill="currentColor" d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L16.19,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-            <span class="lang-ja">Google Playで手に入れよう</span>
-            <span class="lang-en">Get it on Google Play</span>
+          <a href="#" class="inline-flex items-center justify-center rounded-xl bg-white text-primary font-bold shadow-lg hover:bg-gray-100 transition p-2 shrink-0">
+            <span class="store-badge-wrap store-badge-wrap--google"><img src="assets/google-play-badge.png" alt="Get it on Google Play"/></span>
           </a>
         </div>
-        <p class="text-sm text-white/80"><span class="lang-ja">無料で今すぐ試せる｜iOS 18.0以降 / Android 10以降に対応</span><span class="lang-en">Free to try. iOS 18.0+ / Android 10+</span></p>
+        <p class="text-sm text-white/80"><span class="lang-ja">初回2回無料｜iOS 18.0以降 / Android 8.0以降に対応</span><span class="lang-en">2 free uses. iOS 18.0+ / Android 8.0+</span></p>
       </div>
     </section>
 
@@ -472,6 +511,13 @@
         </div>
       </div>
     </footer>
+
+    <!-- ライトボックス: 画像クリックで別枠に大きく表示 -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4" aria-hidden="true" role="dialog" aria-label="画像を拡大表示">
+      <div id="lightbox-backdrop" class="absolute inset-0 bg-black/75" tabindex="-1"></div>
+      <img id="lightbox-img" src="" alt="" class="relative z-10 rounded-xl shadow-2xl pointer-events-none"/>
+      <button type="button" id="lightbox-close" class="absolute top-4 right-4 z-20 w-12 h-12 rounded-full bg-white/90 hover:bg-white text-gray-800 flex items-center justify-center text-2xl font-light shadow-lg transition" aria-label="閉じる">×</button>
+    </div>
   </main>
 
   <script>
@@ -501,6 +547,56 @@
       });
 
       setLang(stored);
+
+      // ライトボックス: .hover-zoom 内の画像クリックで別枠に大きく表示。ステップ画像は矢印キーで前後切り替え
+      (function() {
+        var lb = document.getElementById('lightbox');
+        var lbImg = document.getElementById('lightbox-img');
+        var lbBackdrop = document.getElementById('lightbox-backdrop');
+        var lbClose = document.getElementById('lightbox-close');
+        var stepSrcs = [];
+        var currentStepIndex = -1;
+
+        function openLightbox(src, stepIndex, stepSrcList) {
+          lbImg.src = src;
+          stepSrcs = stepSrcList || [];
+          currentStepIndex = stepIndex >= 0 ? stepIndex : -1;
+          lb.classList.remove('hidden');
+          lb.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+          lb.classList.add('hidden');
+          lb.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          stepSrcs = [];
+          currentStepIndex = -1;
+        }
+        function showStep(index) {
+          if (stepSrcs.length === 0 || index < 0 || index >= stepSrcs.length) return;
+          currentStepIndex = index;
+          lbImg.src = stepSrcs[index];
+        }
+
+        document.querySelectorAll('.hover-zoom img').forEach(function(img) {
+          img.closest('.hover-zoom').addEventListener('click', function(e) {
+            e.preventDefault();
+            var steps = Array.prototype.slice.call(document.querySelectorAll('.lightbox-step-img')).map(function(el) { return el.src; });
+            var idx = steps.indexOf(img.src);
+            openLightbox(img.src, idx, steps.length ? steps : null);
+          });
+        });
+        lbBackdrop.addEventListener('click', closeLightbox);
+        lbClose.addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', function(e) {
+          if (lb.classList.contains('hidden')) return;
+          if (e.key === 'Escape') { closeLightbox(); return; }
+          if (stepSrcs.length > 0) {
+            if (e.key === 'ArrowLeft') { e.preventDefault(); showStep((currentStepIndex - 1 + stepSrcs.length) % stepSrcs.length); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); showStep((currentStepIndex + 1) % stepSrcs.length); }
+          }
+        });
+      })();
     })();
   </script>
 </body>
