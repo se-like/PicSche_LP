@@ -12,6 +12,26 @@ PicSche のランディングページ用リポジトリです。
 - **言語切り替え:** ページ上部の「日本語」「English」で表示言語を切り替えられます（選択は localStorage に保存）。
 - **確認方法:** `index.html` をブラウザで開くか、ルートで `python3 -m http.server 8080` を実行して http://localhost:8080 で表示してください。
 
+## フォルダ構成
+
+```
+PicSche_LP/
+├── index.html          # LPトップページ
+├── tokushoho.html     # 特定商取引法に基づく表記
+├── README.md
+├── .nojekyll           # GitHub Pages 用（Jekyll 無効化）
+├── assets/             # 本番用静的ファイル（用途別）
+│   ├── hero/           # ヒーローセクション（プロモバナー等）
+│   ├── problem/        # 痛点セクション画像
+│   ├── steps/          # 使い方ステップ画像
+│   ├── features/       # 機能説明画像
+│   ├── support/        # 対応フォーマット画像
+│   ├── store/          # アプリアイコン・ストアバッジ
+│   └── _unused/        # 未使用・退避用画像
+└── drafts/             # デザイン案・コンポーネント案（本番未使用）
+    └── (各セクションの code.html 等)
+```
+
 ## 概要　下記のプロンプトでサイト自体はできているはずです。
 # PicSche LP作成プロンプト（Google Stitch用）
 
