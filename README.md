@@ -1,3 +1,15 @@
+# PicSche LP（凍結）
+
+**このリポジトリの HTML はメンテしません。**
+
+- **正の LP:** https://www.cloudcrowd.cloud/products/picsche （リポジトリ: portfolio）
+- **このドメイン:** `https://picsche.cloudcrowd.cloud/` は上記へ 308 リダイレクトします（Vercel / portfolio の middleware）。
+- GitHub Pages のカスタムドメインは、DNS を Vercel に切り替えたあと外してください。
+
+以下は作成時の記録です。新規の文言・機能は portfolio 側だけを更新してください。
+
+---
+
 # PicSche LP
 
 PicSche のランディングページ用リポジトリです。
